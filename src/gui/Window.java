@@ -32,6 +32,7 @@ public class Window extends JFrame {
         this.setVisible(true);
 
         this.windowAnimator = new WindowAnimator(this);
+        this.start();
     }
 
     public GameScreen getGameScreen() {
@@ -39,6 +40,7 @@ public class Window extends JFrame {
     }
 
     public void start() {
-        this.windowAnimator.run();
+        Thread animatorThread = new Thread(this.windowAnimator);
+        animatorThread.start();
     }
 }

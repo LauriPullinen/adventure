@@ -1,21 +1,33 @@
 package gui;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.List;
 
 /**
  * Created by Lauri on 10.4.2015.
  */
-public class MouseListener implements java.awt.event.MouseListener {
+public class MouseHandler implements MouseListener, MouseMotionListener {
     private GameScreen gameScreen;
 
-    public MouseListener(GameScreen gameScreen) {
+    public MouseHandler(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         // Note: left empty intentionally
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        // Note: left empty intentionally
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        // TODO: Add mouse movement handling
     }
 
     @Override
@@ -27,11 +39,11 @@ public class MouseListener implements java.awt.event.MouseListener {
     public void mouseReleased(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        //List<SpriteModel> spriteModels = this.gameScreen.getSpriteModelsUnderPosition(x,y);
-        //if(spriteModels.isEmpty()) {
+        if(this.gameScreen.getLevel().inBounds(x,y)) {
             this.gameScreen.getPlayerSpriteModel().moveTo(x,y);
-        //}
-        // TODO: Else
+        } else {
+            System.out.printf("Click %d,%d out of level bounds\n",x,y);
+        }
     }
 
     @Override

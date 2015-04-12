@@ -13,6 +13,8 @@ import java.util.List;
  */
 public class Sprite implements Drawable {
     private List<BufferedImage> images;
+    private int x;
+    private int y;
     private int currentFrame;
     private int frameDelay;
     private long lastTime;
@@ -21,6 +23,8 @@ public class Sprite implements Drawable {
         this.frameDelay = frameDelay;
         this.currentFrame = 0;
         this.lastTime = 0;
+        this.x = 0;
+        this.y = 0;
 
         this.images = new ArrayList<>(rows * columns);
         int spriteWidth = baseImage.getWidth() / columns;
@@ -55,7 +59,12 @@ public class Sprite implements Drawable {
 
     public void draw(Graphics graphics) {
         this.update();
-        graphics.drawImage(this.images.get(this.currentFrame), 0, 0, null);
+        graphics.drawImage(this.images.get(this.currentFrame), this.x, this.y, null);
+    }
+
+    public void setPosition(int x, int y) {
+        this.x = x - getWidth() / 2;
+        this.y = y - getHeight() / 2;
     }
 
     private void update() {

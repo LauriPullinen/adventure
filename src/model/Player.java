@@ -9,8 +9,8 @@ import gui.SpriteModel;
 public class Player extends Model<SpriteModel> {
     public Player() {
         this.drawable = new SpriteModel();
-        this.drawable.putSprite(SpriteModel.Type.DEFAULT, Sprite.load("resources/sprites/ball.png", 2, 2, 500));
-        this.drawable.setPosition(100, 100);
-        this.drawable.moveTo(100,100);
+        this.drawable.putSprite(SpriteModel.Type.DEFAULT, Sprite.load("resources/sprites/player.png", 1, 1, 0));
+        this.drawable.setPosition(125, 140);
+        this.drawable.moveTo(125, 140);
     }
 }

@@ -27,7 +27,7 @@ public class SpriteModel implements Drawable {
 
     public void draw(Graphics graphics) {
         this.update();
-        graphics.translate((int)this.x, (int)this.y);
+        this.getCurrentSprite().setPosition(getX(), getY());
         this.getCurrentSprite().draw(graphics);
     }
 
@@ -106,7 +106,7 @@ public class SpriteModel implements Drawable {
                 double alpha = Math.atan(Math.abs(deltaX) / Math.abs(deltaY));
                 movementX = Math.signum(deltaX) * Math.sin(alpha) * distance;
                 movementY = Math.signum(deltaY) * Math.cos(alpha) * distance;
-                System.out.printf("D: %.2f  alpha: %.2f  mX: %.2f  mY: %.2f\n", distance, alpha, movementX, movementY);
+                //System.out.printf("D: %.2f  alpha: %.2f  mX: %.2f  mY: %.2f\n", distance, alpha, movementX, movementY);
             } else {
                 movementX = distance;
             }
