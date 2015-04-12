@@ -48,11 +48,11 @@ public class SpriteModel implements Drawable {
     }
 
     public int getX() {
-        return (int) this.x + getWidth() / 2;
+        return (int) getXDouble();
     }
 
     public int getY() {
-        return (int) this.y + getHeight() / 2;
+        return (int) getYDouble();
     }
 
     private double getXDouble() {
@@ -104,8 +104,9 @@ public class SpriteModel implements Drawable {
             // Can't compute the angle if the Y dimension is 0
             if(deltaY != 0) {
                 double alpha = Math.atan(Math.abs(deltaX) / Math.abs(deltaY));
-                movementX = this.getX() + Math.signum(deltaX) * Math.sin(alpha) * distance;
-                movementY = this.getY() + Math.signum(deltaY) * Math.cos(alpha) * distance;
+                movementX = Math.signum(deltaX) * Math.sin(alpha) * distance;
+                movementY = Math.signum(deltaY) * Math.cos(alpha) * distance;
+                System.out.printf("D: %.2f  alpha: %.2f  mX: %.2f  mY: %.2f\n", distance, alpha, movementX, movementY);
             } else {
                 movementX = distance;
             }
@@ -115,7 +116,7 @@ public class SpriteModel implements Drawable {
             else if (movementX < 0)
                 this.setCurrentType(Type.RIGHT);
 
-            this.setPosition(this.getX() + movementX, this.getY() + movementY);
+            this.setPosition(this.getXDouble() + movementX, this.getYDouble() + movementY);
         }
         this.lastTime = currentTime;
     }
